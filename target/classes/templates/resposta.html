@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" class="default-style layout-fixed layout-navbar-fixed">
+<html lang="pt" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+    class="default-style layout-fixed layout-navbar-fixed">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resposta</title>
 </head>
+
 <body>
     <h1 th:text="${estado}" style="text-align: Center;"></h1>
     <p><i>ID da Coleção:</i> <span th:text="${collection_id}"></span></p>
@@ -20,4 +23,5 @@
     <p><i>Modo de Processamento:</i> <span th:text="${processing_mode}"></span></p>
     <p><i>ID da Conta do Comerciante:</i> <span th:text="${merchant_account_id}"></span></p>
 </body>
+
 </html>

@@ -5,10 +5,10 @@ const mercadopago = new MercadoPago('SUA CREDENCIAL DE TESTE', {
 });
 
 // Lidar com a chamada ao backend e gerar preferência.
-document.getElementById("checkout-btn").addEventListener("click", function() {
+document.getElementById("checkout-btn").addEventListener("click", function () {
 
   $('#checkout-btn').attr("disabled", true);
-  
+
   const dadosPedido = {
     nome_produto: document.getElementById("produc-name").innerHTML,
     quantidade: document.getElementById("quantity").value,
@@ -16,27 +16,27 @@ document.getElementById("checkout-btn").addEventListener("click", function() {
     descricao: document.getElementById("product-description").innerHTML,
     preco: document.getElementById("unit-price").innerHTML
   };
-    
+
   fetch("/pago/create_preference", {
     method: "POST",
     headers: {
-        "Content-Type": "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(dadosPedido),
   })
     .then(response => response.json())
     .then(response => {
-        console.log("preferência::" + response.id);
-        criarBotaoCheckout(response.id);
-        
-        $(".shopping-cart").fadeOut(500);
-        setTimeout(() => {
-            $(".container_payment").show(500).fadeIn();
-        }, 500);
+      console.log("preferência::" + response.id);
+      criarBotaoCheckout(response.id);
+
+      $(".shopping-cart").fadeOut(500);
+      setTimeout(() => {
+        $(".container_payment").show(500).fadeIn();
+      }, 500);
     })
     .catch(() => {
-        alert("Erro inesperado");
-        $('#checkout-btn').attr("disabled", false);
+      alert("Erro inesperado");
+      $('#checkout-btn').attr("disabled", false);
     });
 });
 
@@ -67,13 +67,13 @@ function atualizarPreco() {
 }
 
 document.getElementById("quantity").addEventListener("change", atualizarPreco);
-atualizarPreco();  
+atualizarPreco();
 
 // Voltar
-document.getElementById("go-back").addEventListener("click", function() {
+document.getElementById("go-back").addEventListener("click", function () {
   $(".container_payment").fadeOut(500);
   setTimeout(() => {
-      $(".shopping-cart").show(500).fadeIn();
+    $(".shopping-cart").show(500).fadeIn();
   }, 500);
-  $('#checkout-btn').attr("disabled", false);  
+  $('#checkout-btn').attr("disabled", false);
 });
